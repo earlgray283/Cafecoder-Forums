@@ -59,9 +59,13 @@ require "../php/echo.php";
 						<?php
 						$sql = "SELECT * FROM questions ORDER BY id DESC";
 						$res = $dbh->query($sql);
-
+						$cnt = 0;
 						foreach ($res as $value) {
 							echo_forum($value, true);
+							$cnt++;
+							if ($cnt == 3) {
+								break;
+							}
 						}
 						?>
 					</div>

@@ -27,16 +27,18 @@ $forum_id = $_GET["forum_id"];
 <body style="background-color:beige;">
     <?php
     include_once "../template/navbar.php";
-    
+
     /*if ($_GET["success"] == true) {
         echo '<div class="alert alert-success" role="alert"><strong>成功！</strong> - 成功しました投稿に！</div>';
     }*/
     ?>
 
     <div class="container">
+        <h2><?php echo $forum_name; ?></h2>
+        <hr>
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">質問をしたいんですか？</h3>
+                <h3 class="card-title"><?php echo $forum_name; ?>でわからない問題があるんですか？</h3>
                 <hr>
                 <p>
                     積極的に質問をしていきましょう！！<br>

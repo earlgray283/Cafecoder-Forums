@@ -24,7 +24,27 @@ echo '<p style="background-color:#f0ad4e;color:white;border-radius: 10px;padding
     }
 
     echo '<hr>' . "\n";
-    echo '<a href="question.php?question_id=' . $value["id"] . '"><button type="button" class="btn btn-primary">回答する</button></a>';
+    if ($issmall == true) {
+        echo '<a href="question.php?question_id=' . $value["id"] . '"><button type="button" class="btn btn-primary">詳細</button></a>';
+    }
+
+    echo ' </div>' . "\n";
+    echo '</div>' . "\n";
+    echo '<br>';
+}
+
+function echo_answer($value)
+{
+    echo '<div class="card">' . "\n";
+    echo ' <div class="card-body">' . "\n";
+    echo ' <p>author - ' . $value["author"] .  '　　　date - ' . $value["date"] . '</p>' . "\n"; //question-author&date
+
+    /*
+echo '<p style="background-color:#f0ad4e;color:white;border-radius: 10px;padding: 0.5em 1.1em;width:3.5em;">TLE</a>';
+    */
+    echo '<hr>' . "\n";
+    echo $value["detail"] . "\n"; //question-detail
+
     echo ' </div>' . "\n";
     echo '</div>' . "\n";
     echo '<br>';

@@ -30,6 +30,7 @@ $question_id = $_GET["question_id"];
     ?>
 
     <div class="container">
+        <h2>質問内容</h2>
         <?php
         $sql = "SELECT * FROM questions WHERE id=" . $question_id;
         $res = $dbh->query($sql);
@@ -37,6 +38,34 @@ $question_id = $_GET["question_id"];
             echo_forum($value, false);
         }
         ?>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <p>「この質問に回答しますか？」をクリックすると投稿フォームが表示されます。</p>
+                <p>めざせAC100%!</p>
+                <details>
+                    <summary class="card-title" style="font-size:25px;"><strong>この質問に回答しますか？</strong></summary>
+                    <?php echo '<form action="answer.php?question_id=' . $question_id . '" method="post">'; ?>
+                    <textarea class="form-control" name="detail" style="font-size:20px" rows="10"></textarea>
+                    <br>
+                    <?php echo '<button type="submit" class="btn btn-primary">回答する</button>'; ?>
+                    </form>
+                </details>
+
+            </div>
+        </div>
+        <br>
+        <hr>
+
+        <h2>みんなの回答</h2>
+        <?php
+        $sql = "SELECT * FROM answers WHERE question_id='$question_id' ORDER BY id ";
+        $res = $dbh->query($sql);
+        foreach ($res as $value) {
+            echo_answer($value);
+        }
+        ?>
+
     </div>
 
 
