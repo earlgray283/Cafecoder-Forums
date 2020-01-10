@@ -4,6 +4,7 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
+$con=new DBC();
 if (isset($_GET["question_id"]) == false) {
     echo 'Please set question_id', "\n";
     exit();
@@ -13,15 +14,13 @@ $question_id = $_GET["question_id"];
 
 <head>
     <?php
-    $sql = "SELECT * FROM questions WHERE id=" . $question_id;
-    $res = $dbh->query($sql);
+    $res = $con->simple_exec_obj("SELECT * FROM questions WHERE id=" . $question_id);
     foreach ($res as $value) {
         $question_name = $value["title"];
     }
     include_once "../template/header.php";
+    echo "<title>".$question_name."</title>";
     ?>
-
-    <title><?php echo $question_name; ?> </title>
 </head>
 
 <body style="background-color:beige;">
@@ -32,8 +31,7 @@ $question_id = $_GET["question_id"];
     <div class="container">
         <h2>質問内容</h2>
         <?php
-        $sql = "SELECT * FROM questions WHERE id=" . $question_id;
-        $res = $dbh->query($sql);
+        $res=$con->simple_exec_obj("SELECT * FROM questions WHERE id=" . $question_id);
         foreach ($res as $value) {
             echo_forum($value, false);
         }
@@ -48,7 +46,7 @@ $question_id = $_GET["question_id"];
                     <?php echo '<form action="answer.php?question_id=' . $question_id . '" method="post">'; ?>
                     <textarea class="form-control" name="detail" style="font-size:20px" rows="10"></textarea>
                     <br>
-                    <?php echo '<button type="submit" class="btn btn-primary">回答する</button>'; ?>
+                    <button type="submit" class="btn btn-primary">回答する</button>
                     </form>
                 </details>
 
@@ -59,8 +57,7 @@ $question_id = $_GET["question_id"];
 
         <h2>みんなの回答</h2>
         <?php
-        $sql = "SELECT * FROM answers WHERE question_id='$question_id' ORDER BY id ";
-        $res = $dbh->query($sql);
+        $res=$con->simple_exec_obj("SELECT * FROM answers WHERE question_id='$question_id' ORDER BY id ");
         foreach ($res as $value) {
             echo_answer($value);
         }

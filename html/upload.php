@@ -3,6 +3,7 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
+$con=new DBC();
 ?>
 
 <head>
@@ -27,8 +28,7 @@ require "../php/echo.php";
                         <h4>・Contest</h4>
                         <select class="form-control" name="contest_id" style="width:15rem;">
                             <?php
-                            $sql = "SELECT * FROM questions WHERE id=" . $question_id;
-                            $res = $dbh->query($sql);
+                            $res=$con->simple_exec_obj("SELECT * FROM questions WHERE id=" . $question_id);
                             if (isset($_GET["contest_id"]) == false) {
                                 echo '<option value="test_forum" selected>tea004</option>';
                             } else {

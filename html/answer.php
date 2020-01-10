@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 include_once "../php/db_connect.php";
+$con=new DBC();
 
 $date = date("Y/m/d H:i:s");
 echo $_POST["detail"];
@@ -24,8 +25,7 @@ todo バリデーションチェック
 $url = $_SERVER['HTTP_REFERER'];
 
 $detail = nl2br($detail);
-$sql = "SELECT * FROM questions WHERE id='$question_id'";
-$res = $dbh->query($sql);
+$res = $con->simple_exec_obj("SELECT * FROM questions WHERE id='$question_id'");
 if (!$res) {
     echo 'query failed';
     exit();
@@ -34,8 +34,7 @@ foreach ($res as $value) {
     $forum_id = $value["forum_id"];
 }
 
-$sql = "INSERT INTO  answers (date,question_id,detail,author,forum_id) VALUES ( '$date'  ,$question_id,'$detail' ,'makabe',$forum_id)";
-$res = $dbh->query($sql);
+$res = $con->simple_exec_obj("INSERT INTO  answers (date,question_id,detail,author,forum_id) VALUES ( '$date'  ,$question_id,'$detail' ,'makabe',$forum_id)");
 if (!$res) {
     echo 'failed...';
     exit();

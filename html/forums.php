@@ -3,7 +3,9 @@
 
 <?php
 include_once "../php/db_connect.php";
+$con=new DBC();
 require "../php/echo.php";
+
 if (isset($_GET["forum_id"]) == false) {
     echo 'Please set forum_id', "\n";
     exit();
@@ -13,15 +15,14 @@ $forum_id = $_GET["forum_id"];
 
 <head>
     <?php
-    $sql = "SELECT * FROM forums WHERE id=" . $forum_id;
-    $res = $dbh->query($sql);
+    $res = $con->simple_exec_obj("SELECT * FROM forums WHERE id=" . $forum_id);
     foreach ($res as $value) {
         $forum_name = $value["name"];
     }
     include_once "../template/header.php";
-    ?>
 
-    <title><?php echo $forum_name; ?> </title>
+    echo "<title>".$forum_name."</title>";
+    ?>
 </head>
 
 <body style="background-color:beige;">

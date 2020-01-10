@@ -3,6 +3,7 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
+$con=new DBC();
 ?>
 
 <head>
@@ -32,8 +33,7 @@ require "../php/echo.php";
 										<summary>テスト掲示板</summary>
 										<ul>
 											<?php
-											$sql = "SELECT * FROM forums";
-											$res = $dbh->query($sql);
+											$res = $con->simple_exec_obj("SELECT * FROM forums");
 											foreach ($res as $values) {
 												echo '<a href="forums.php?forum_id=' . $values["id"] . '">' . $values["name"] . '</a>' . "\n";
 											}
@@ -57,8 +57,7 @@ require "../php/echo.php";
 					<div class="card-body">
 						<h5 class="card-title">最新の投稿一覧</h5>
 						<?php
-						$sql = "SELECT * FROM questions ORDER BY id DESC";
-						$res = $dbh->query($sql);
+						$res = $con->simple_exec_obj("SELECT * FROM questions ORDER BY id DESC");
 						$cnt = 0;
 						foreach ($res as $value) {
 							echo_forum($value, true);
