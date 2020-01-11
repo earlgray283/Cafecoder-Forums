@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 include_once "../php/db_connect.php";
-$con=new DBC();
+$con = new DBC();
 
 $date = date("Y/m/d H:i:s");
 echo $_POST["detail"];
@@ -12,16 +12,16 @@ if (!isset($_POST["detail"]) || !isset($_GET["question_id"])) {
     exit();
 }
 
-$question_id = $_GET["question_id"];
-$detail = $_POST["detail"];
+$question_id = htmlspecialchars($_GET["question_id"]);
+$detail = htmlspecialchars($_POST["detail"]);
 if ($question_id == "" || $detail == "") {
     echo "不適切なリクエストです。";
     exit();
 }
-/*
-todo バリデーションチェック
+/*todo バリデーションチェック*/
 
-*/
+
+/*-------------------------*/
 $url = $_SERVER['HTTP_REFERER'];
 
 $detail = nl2br($detail);

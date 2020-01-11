@@ -9,7 +9,7 @@ if (isset($_GET["question_id"]) == false) {
     echo 'Please set question_id', "\n";
     exit();
 }
-$question_id = $_GET["question_id"];
+$question_id = htmlspecialchars($_GET["question_id"]);
 ?>
 
 <head>
@@ -36,7 +36,6 @@ $question_id = $_GET["question_id"];
             echo_forum($value, false);
         }
         ?>
-        <hr>
         <div class="card">
             <div class="card-body">
                 <p>「この質問に回答しますか？」をクリックすると投稿フォームが表示されます。</p>

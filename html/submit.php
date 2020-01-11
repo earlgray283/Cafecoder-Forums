@@ -12,10 +12,10 @@ if (!isset($_POST["contest_id"]) || !isset($_POST["problem_id"]) || !isset($_POS
     exit();
 }
 
-$contest_id = $_POST["contest_id"];
-$problem_id = $_POST["problem_id"];
-$title = $_POST["title"];
-$detail = $_POST["detail"];
+$contest_id = htmlspecialchars($_POST["contest_id"]);
+$problem_id = htmlspecialchars($_POST["problem_id"]);
+$title = htmlspecialchars($_POST["title"]);
+$detail = htmlspecialchars($_POST["detail"]);
 if ($contest_id == "" || $problem_id == "" || $title == "" || $detail == "") {
     echo "不適切なリクエストです。";
     exit();

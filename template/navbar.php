@@ -1,3 +1,9 @@
+<?php
+include_once "../php/db_connect.php";
+$con = new DBC();
+
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">Cafecoder Forums</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +17,12 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">Forums</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/forums.php?forum_id=1001">test_forum</a>
+                    <?php
+                    $res = $con->simple_exec_obj("SELECT * FROM forums ORDER BY id");
+                    foreach ($res as $value) {
+                        echo '<a class="dropdown-item" href="/forums.php?forum_id='.$value["id"].'">'.$value["name"].'</a><br>'."\n";
+                    }
+                    ?>
                 </div><!-- ./dropdown-menu -->
             </li>
         </ul>

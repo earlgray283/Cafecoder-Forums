@@ -3,14 +3,14 @@
 
 <?php
 include_once "../php/db_connect.php";
-$con=new DBC();
+$con = new DBC();
 require "../php/echo.php";
 
 if (isset($_GET["forum_id"]) == false) {
     echo 'Please set forum_id', "\n";
     exit();
 }
-$forum_id = $_GET["forum_id"];
+$forum_id = htmlspecialchars($_GET["forum_id"]);
 ?>
 
 <head>
@@ -21,7 +21,7 @@ $forum_id = $_GET["forum_id"];
     }
     include_once "../template/header.php";
 
-    echo "<title>".$forum_name."</title>";
+    echo "<title>" . $forum_name . "</title>";
     ?>
 </head>
 
@@ -50,8 +50,7 @@ $forum_id = $_GET["forum_id"];
         <br>
 
         <?php
-        $sql = "SELECT * FROM questions WHERE forum_id=" . $forum_id . " ORDER BY id DESC ";
-        $res = $dbh->query($sql);
+        $res = $con->simple_exec_obj("SELECT * FROM questions WHERE forum_id=" . $forum_id . " ORDER BY id DESC ");
         foreach ($res as $value) {
             echo_forum($value, true);
         }

@@ -25,7 +25,7 @@ echo '<p style="background-color:#f0ad4e;color:white;border-radius: 10px;padding
 
     echo '<hr>' . "\n";
     if ($issmall == true) {
-        echo '<a href="question.php?question_id=' . $value["id"] . '"><button type="button" class="btn btn-primary">詳細</button></a>';
+        echo '<a href="questions.php?question_id=' . $value["id"] . '"><button type="button" class="btn btn-primary">詳細</button></a>';
     }
 
     echo ' </div>' . "\n";

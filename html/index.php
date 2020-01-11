@@ -3,7 +3,7 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
-$con=new DBC();
+$con = new DBC();
 ?>
 
 <head>
@@ -29,17 +29,12 @@ $con=new DBC();
 							<details open>
 								<summary>コンテスト</summary>
 								<ul>
-									<details>
-										<summary>テスト掲示板</summary>
-										<ul>
-											<?php
-											$res = $con->simple_exec_obj("SELECT * FROM forums");
-											foreach ($res as $values) {
-												echo '<a href="forums.php?forum_id=' . $values["id"] . '">' . $values["name"] . '</a>' . "\n";
-											}
-											?>
-										</ul>
-									</details>
+									<?php
+									$res = $con->simple_exec_obj("SELECT * FROM forums");
+									foreach ($res as $values) {
+										echo '<a href="forums.php?forum_id=' . $values["id"] . '">' . $values["name"] . '</a><br>' . "\n";
+									}
+									?>
 								</ul>
 							</details>
 						</p>
