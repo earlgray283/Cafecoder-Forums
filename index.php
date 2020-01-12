@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="ja">
 <?php
-include_once "../php/db_connect.php";
-require "../php/echo.php";
+include_once "php/db_connect.php";
+require "php/echo.php";
 $con = new DBC();
 ?>
 
 <head>
 	<title>Cafecoder Forums</title>
 	<?php
-	include_once "../template/header.php";
+	include_once "template/header.php";
 	?>
 </head>
 
 <body style="background-color:beige;">
 	<?php
-	include_once "../template/navbar.php";
+	include_once "template/navbar.php";
 	?>
 
 	<div class="container">
