@@ -22,7 +22,7 @@ class DBC
         try {
             $this->dsn = 'mysql:dbname=cafecoder;host=localhost;charset=utf8;';
             $this->user = 'earlgray283';
-            $this->password = 'z76543215911';
+            $this->password = '***';
             $this->dbh = new PDO($this->dsn, $this->user, $this->password);
             //echo 'Success!!';
         } catch (PDOException $e) {
