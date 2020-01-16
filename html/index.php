@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="ja">
 <?php
-include_once "php/db_connect.php";
-require "php/echo.php";
+include_once "../php/db_connect.php";
+require "../php/echo.php";
 $con = new DBC();
 ?>
 
 <head>
 	<title>Cafecoder Forums</title>
 	<?php
-	include_once "template/header.php";
+	include_once "../template/header.php";
 	?>
 </head>
 
 <body style="background-color:beige;">
 	<?php
-	include_once "template/navbar.php";
+	include_once "../template/navbar.php";
 	?>
 
 	<div class="container">
@@ -24,10 +24,10 @@ $con = new DBC();
 				<div class="card" style="width: 22rem;">
 					<title>Contest Forums</title>
 					<div class="card-body">
-						<h5 class="card-title">コンテストごとの掲示板一覧</h5>
+						<h5 class="card-title">各分野の掲示板一覧</h5>
 						<p class="card-text">
 							<details open>
-								<summary>コンテスト</summary>
+								<summary>プログラミング言語</summary>
 								<ul>
 									<?php
 									$res = $con->simple_exec_obj("SELECT * FROM forums");

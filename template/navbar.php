@@ -1,7 +1,7 @@
 <?php
 include_once "../php/db_connect.php";
 $con = new DBC();
-
+session_start();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -10,7 +10,7 @@ $con = new DBC();
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home</a>
             </li>
@@ -20,11 +20,24 @@ $con = new DBC();
                     <?php
                     $res = $con->simple_exec_obj("SELECT * FROM forums ORDER BY id");
                     foreach ($res as $value) {
-                        echo '<a class="dropdown-item" href="/forums.php?forum_id='.$value["id"].'">'.$value["name"].'</a><br>'."\n";
+                        echo '<a class="dropdown-item" href="/forums.php?forum_id=' . $value["id"] . '">' . $value["name"] . '</a><br>' . "\n";
                     }
                     ?>
                 </div><!-- ./dropdown-menu -->
             </li>
+        </ul>
+        <ul class="navbar-nav">
+            <?php
+            if ($_SESSION["userid"] == "") {
+                echo '<a class="nav-item nav-link" href="/signin.php">サインイン</a>';
+            } else {
+                echo $_SESSION["userid"] . '　<a href="signout.php">ログアウトする</a>';
+            }
+            ?>
+        </ul>
+
+
+
         </ul>
     </div>
 </nav>

@@ -39,11 +39,11 @@ $forum_id = htmlspecialchars($_GET["forum_id"]);
         <hr>
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title"><?php echo $forum_name; ?>でわからない問題があるんですか？</h3>
+                <h3 class="card-title"><?php echo $forum_name; ?>でわからないことがあるんですか？</h3>
                 <hr>
                 <p>
                     積極的に質問をしていきましょう！！<br>
-                    <?php echo '<a href="upload.php"><button type="button" class="btn btn-warning">質問する</button></a>'; ?>
+                    <?php echo '<a href="upload.php?forum_id=' . $forum_id . '"><button type="button" class="btn btn-warning">質問する</button></a>'; ?>
                 </p>
             </div>
         </div>

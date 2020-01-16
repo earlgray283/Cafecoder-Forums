@@ -1,10 +1,22 @@
 <?php
+include_once "db_connect.php";
+
 function echo_forum($value, $issmall)
 {
+    $category = array(
+        "1000" => "C-language",
+        "1001" => "C++",
+        "1002" => "Java",
+        "1003" => "Python3",
+        "1004" => "C#",
+        "1005" => "Scratch",
+    );
+
     echo '<div class="card">' . "\n";
     echo ' <div class="card-body">' . "\n";
     echo ' <h2 class="card-title"><strong>' . $value["title"] . '</strong></h2>' . "\n"; //question-title
-    echo ' <p>author - ' . $value["author"] . '　　' . 'category - todoコンテストIDなど' . '　　' . 'date - ' . $value["date"] . '</p>' . "\n"; //question-author&date
+    $forum_id = $value["forum_id"];
+    echo ' <p>ユーザー - ' . $value["author"] . '　　' . '分野 - ' . $category["$forum_id"] . '　　' . '投稿日時 - ' . $value["date"] . '</p>' . "\n"; //question-author&date
 
     if ($value["status"] == "AC") {
         echo '<p style="background-color:#5cb85c;color:white;border-radius: 10px;padding: 0.5em 1.25em;width:3.75em;">AC</a>';

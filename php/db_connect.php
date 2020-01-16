@@ -1,18 +1,28 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-
-class DBC{
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+$category = array(
+    "1000" => "C-language",
+    "1001" => "C++",
+    "1002" => "Java",
+    "1005" => "Python3",
+    "1004" => "C#",
+    "1003" => "Scratch",
+);
+class DBC
+{
     private $dsn;
     private $user;
     private $password;
 
-    function __construct(){
+   
+
+    function __construct()
+    {
         try {
             $this->dsn = 'mysql:dbname=cafecoder;host=localhost;charset=utf8;';
-            $this->user = 'ggggcxquicimfh';
-            $this->password = '74506a7ee5be1314f0de64c37ab527ebcb91ee31e733949c341c2a5555572e2f';
+            $this->user = 'earlgray283';
+            $this->password = 'z76543215911';
             $this->dbh = new PDO($this->dsn, $this->user, $this->password);
             //echo 'Success!!';
         } catch (PDOException $e) {
@@ -21,14 +31,25 @@ class DBC{
         }
     }
 
-    function __destruct(){
-        $dbh = null;
+    function __destruct()
+    {
+        $this->dbh = null;
     }
 
-    function simple_exec_obj($sql){
+    function simple_exec_obj($sql)
+    {
         $stmt = $this->dbh->query($sql);
         return $stmt;
     }
+
+    function prepare_execute($sql, $data)
+    {
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute($data);
+    }
+
+    function sha256hash($in)
+    {
+        return hash("sha256", $in . $this->config["salt"]);
+    }
 }
-
-

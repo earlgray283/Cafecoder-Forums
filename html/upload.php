@@ -3,7 +3,8 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
-$con=new DBC();
+$con = new DBC();
+$forum_id=$_GET["forum_id"];
 ?>
 
 <head>
@@ -25,26 +26,15 @@ $con=new DBC();
                 <hr>
                 <form action="submit.php" method="post">
                     <div class="form-group" style="width:auto">
-                        <h4>・Contest</h4>
-                        <select class="form-control" name="contest_id" style="width:15rem;">
+                        <h4>・分野</h4>
+                        <select class="form-control" name="forum_id" style="width:15rem;">
                             <?php
-                            $res=$con->simple_exec_obj("SELECT * FROM questions WHERE id=" . $question_id);
-                            if (isset($_GET["contest_id"]) == false) {
-                                echo '<option value="test_forum" selected>tea004</option>';
-                            } else {
-                                echo '<option value="">選択してください</option>';
-                            }
-                            foreach ($res as $value) {
-                                if ($value["name"] == $_GET["contest_id"]) {
-                                    echo '<option value="' . $value["contest_id"] . '" selected>' . $value["contest_id"] . '</option>';
-                                } else {
-                                    echo '<option value="' . $value["contest_id"] . '">' . $value["contest_id"] . '</option>';
-                                }
-                            }
+                            echo '<option value="'.$forum_id.'">'.$category[$forum_id].'</option>';
                             ?>
                         </select>
                         <br>
 
+                        <!--
                         <h4>・Problem</h4>
                         <select class="form-control" name="problem_id" style="width:15rem;">
                             <option>1</option>
@@ -53,12 +43,14 @@ $con=new DBC();
                             <option>4</option>
                             <option>5</option>
                         </select>
+                    <br>    
+                    -->
 
-                        <br>
-                        <h4>・Title</h4>
+
+                        <h4>・タイトル</h4>
                         <input type="text" class="form-control" name="title" style="font-size:30px" rows="1"></input>
                         <br>
-                        <h4>・Detail</h4>
+                        <h4>・内容</h4>
                         <textarea class="form-control" name="detail" style="font-size:20px" rows="15"></textarea>
                         <br>
                         <?php echo '<button type="submit" class="btn btn-success">質問する</button>'; ?>
