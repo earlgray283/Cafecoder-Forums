@@ -34,7 +34,7 @@ foreach ($res as $value) {
     $forum_id = $value["forum_id"];
 }
 
-$res = $con->simple_exec_obj("INSERT INTO  answers (date,question_id,detail,author,forum_id) VALUES ( '$date'  ,$question_id,'$detail' ,'makabe',$forum_id)");
+$res = $con->simple_exec_obj("INSERT INTO  answers (date,question_id,detail,author,forum_id) VALUES ( '$date'  ,$question_id,'$detail' ," . $_SESSION["userid"] . ",$forum_id)");
 if (!$res) {
     echo 'failed...';
     exit();

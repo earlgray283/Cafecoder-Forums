@@ -1,9 +1,9 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
+session_start();
 include_once "../php/db_connect.php";
-$con=new DBC();
+$con = new DBC();
 
 $date = date("Y/m/d H:i:s");
 
@@ -29,11 +29,12 @@ todo バリデーションチェック
 $url = $_SERVER['HTTP_REFERER'];
 
 $detail = nl2br($detail);
+$userid = $_SESSION["userid"];
 
-$res = $con->simple_exec_obj("INSERT INTO  questions (date,title,detail,author,forum_id,status) VALUES ( '$date' ,'$title' ,'$detail' ,'earlgray283',$forum_id,'WJ')");
+$res = $con->simple_exec_obj("INSERT INTO  questions (date,title,detail,author,forum_id,status) VALUES ( '$date' ,'$title' ,'$detail' ,'$userid',$forum_id,'WJ')");
 if (!$res) {
     echo 'failed...';
-    echo $date ,$title ,$detail ,'earlgray283',$forum_id,'WJ';
+    echo $date, $title, $detail, $_SESSION["userid"], $forum_id, 'WJ';
     exit();
 }
 
