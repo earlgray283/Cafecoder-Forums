@@ -25,6 +25,12 @@ session_start();
                     ?>
                 </div><!-- ./dropdown-menu -->
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/problems.php">Problems</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/mini-judge.php">Mini Judge</a>
+            </li>
         </ul>
         <ul class="navbar-nav">
             <?php

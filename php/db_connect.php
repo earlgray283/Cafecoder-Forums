@@ -2,12 +2,10 @@
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $category = array(
-    "1000" => "C-language",
-    "1001" => "C++",
-    "1002" => "Java",
-    "1005" => "Python3",
-    "1004" => "C#",
-    "1003" => "Scratch",
+    "1" => "C",
+    "2" => "C++",
+    "3" => "Java",
+    "4" => "Scratch",
 );
 class DBC
 {
@@ -21,8 +19,8 @@ class DBC
     {
         try {
             $this->dsn = 'mysql:dbname=cafecoder;host=localhost;charset=utf8;';
-            $this->user = '***';
-            $this->password = '***';
+            $this->user = 'earlgray283';
+            $this->password = 'z76543215911';
             $this->dbh = new PDO($this->dsn, $this->user, $this->password);
             //echo 'Success!!';
         } catch (PDOException $e) {
