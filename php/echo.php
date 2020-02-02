@@ -1,6 +1,5 @@
 <?php
 include_once "db_connect.php";
-<<<<<<< HEAD
 $category = array(
     "1000" => "C",
     "1001" => "C++",
@@ -16,16 +15,6 @@ function echo_forum($value, $issmall)
         "1002" => "Java",
         "1003"=>"Python3",
         "1004" => "Scratch",
-=======
-
-function echo_forum($value, $issmall)
-{
-    $category = array(
-        "1" => "C",
-        "2" => "C++",
-        "3" => "Java",
-        "4" => "Scratch",
->>>>>>> origin/master
     );
 
     echo '<div class="card">' . "\n";
