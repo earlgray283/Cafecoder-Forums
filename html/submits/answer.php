@@ -2,13 +2,18 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
-include_once "../php/db_connect.php";
+include_once "../../php/db_connect.php";
 $con = new DBC();
 
 $date = date("Y/m/d H:i:s");
 echo $_POST["detail"];
 if (!isset($_POST["detail"]) || !isset($_GET["question_id"])) {
     echo "不適切なリクエストです。";
+    exit();
+}
+if (!isset($_SESSION["userid"])){
+    echo "ログインしてください。";
+    header('Location: /signin.php?mes=1');
     exit();
 }
 
@@ -40,4 +45,4 @@ if (!$res) {
     exit();
 }
 
-header('Location: /questions.php?question_id=' . $question_id);
+header('Location: /que_detail.php?question_id=' . $question_id);

@@ -3,6 +3,7 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
+$mes=$_GET["mes"];
 $con = new DBC();
 ?>
 
@@ -18,13 +19,18 @@ $con = new DBC();
 	include_once "../template/navbar.php";
 	?>
 
+
 	<div class="container">
+		<?php 
+		if($mes==1)echo '<div class="alert alert-danger" role="alert">ログインしてください。</div>'; 
+		else if($mes==2)echo '<div class="alert alert-success" role="alert">登録が完了しました。ログインをしてください。</div>';
+		?>
 		<div class="card" style="width: auto;">
 			<title>sign in</title>
 			<div class="row">
 				<div class="card-body" style="float:left;">
 					<h2 class="card-title">サインイン</h2>
-					<form name="signin_form" action="signinutil.php" method="post">
+					<form name="signin_form" action="submits/signinutil.php" method="post">
 						<div class="form-group" style="width:auto">
 							<h4>・UserID</h4>
 							<input type="text" class="form-control" name="userid" style="font-size:25px;width:20rem;"></input>
@@ -39,7 +45,7 @@ $con = new DBC();
 				</div>
 				<div class="card-body" style="float:left;">
 					<h2 class="card-title">サインアップ</h2>
-					<form name="signup_form" action="signuputil.php" method="post">
+					<form name="signup_form" action="submits/signuputil.php" method="post">
 						<div class="form-group" style="width:auto">
 							<h4>・UserID</h4>
 							<input type="text" class="form-control" name="userid" style="font-size:25px;width:20rem;"></input>

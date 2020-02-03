@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
-include_once "../php/db_connect.php";
+include_once "../../php/db_connect.php";
 $con = new DBC();
 
 $date = date("Y/m/d H:i:s");
@@ -12,7 +12,11 @@ if (!isset($_POST["forum_id"]) || /*!isset($_POST["problem_id"]) ||*/ !isset($_P
     echo $_POST["forum_id"];
     exit();
 }
-echo 'u';
+if (!isset($_SESSION["userid"])){
+    echo "ログインしてください。";
+    header('Location: /signin.php?mes=1');
+    exit();
+}
 
 $forum_id = htmlspecialchars($_POST["forum_id"]);
 //$problem_id = htmlspecialchars($_POST["problem_id"]);

@@ -24,7 +24,7 @@ $forum_id=$_GET["forum_id"];
             <div class="card-body">
                 <h2 class="card-title">質問する</h2>
                 <hr>
-                <form action="submit.php" method="post">
+                <form action="submits/question.php" method="post">
                     <div class="form-group" style="width:auto">
                         <h4>・分野</h4>
                         <select class="form-control" name="forum_id" style="width:15rem;">

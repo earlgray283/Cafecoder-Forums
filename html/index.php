@@ -3,6 +3,7 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
+$mes=$_GET["mes"];
 $con = new DBC();
 ?>
 
@@ -19,12 +20,15 @@ $con = new DBC();
 	?>
 
 	<div class="container">
+		<?php
+		if($mes==1)echo '<div class="alert alert-success" role="alert">投稿に成功しました！</div>';
+		?>
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="card" style="width: 22rem;">
 					<title>Contest Forums</title>
 					<div class="card-body">
-						<h5 class="card-title">各分野の掲示板一覧</h5>
+						<h5 class="card-title"><strong>各分野の掲示板一覧</strong></h5>
 						<p class="card-text">
 							<details open>
 								<summary>プログラミング言語</summary>

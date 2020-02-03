@@ -43,7 +43,7 @@ $forum_id = htmlspecialchars($_GET["forum_id"]);
                 <hr>
                 <p>
                     積極的に質問をしていきましょう！！<br>
-                    <?php echo '<a href="upload.php?forum_id=' . $forum_id . '"><button type="button" class="btn btn-warning">質問する</button></a>'; ?>
+                    <?php echo '<a href="que_upload.php?forum_id=' . $forum_id . '"><button type="button" class="btn btn-warning">質問する</button></a>'; ?>
                 </p>
             </div>
         </div>

@@ -2,10 +2,11 @@
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
 $category = array(
-    "1" => "C",
-    "2" => "C++",
-    "3" => "Java",
-    "4" => "Scratch",
+    "1000" => "C",
+    "1001" => "C++",
+    "1002" => "Java",
+    "1003" => "Python3",
+    "1004" => "Scratch",
 );
 class DBC
 {

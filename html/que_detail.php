@@ -42,7 +42,7 @@ $question_id = htmlspecialchars($_GET["question_id"]);
                 <p>めざせAC100%!</p>
                 <details>
                     <summary class="card-title" style="font-size:25px;"><strong>この質問に回答しますか？</strong></summary>
-                    <?php echo '<form action="answer.php?question_id=' . $question_id . '" method="post">'; ?>
+                    <?php echo '<form action="submits/answer.php?question_id=' . $question_id . '" method="post">'; ?>
                     <textarea class="form-control" name="detail" style="font-size:20px" rows="10"></textarea>
                     <br>
                     <button type="submit" class="btn btn-primary">回答する</button>

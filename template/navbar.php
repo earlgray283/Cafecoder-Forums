@@ -35,9 +35,9 @@ session_start();
         <ul class="navbar-nav">
             <?php
             if ($_SESSION["userid"] == "") {
-                echo '<a class="nav-item nav-link" href="/signin.php">サインイン</a>';
+                echo '<a class="nav-item nav-link" href="signin.php">サインイン</a>';
             } else {
-                echo $_SESSION["userid"] . '　<a href="signout.php">ログアウトする</a>';
+                echo $_SESSION["userid"] . '　<a href="submits/signout.php">ログアウトする</a>';
             }
             ?>
         </ul>

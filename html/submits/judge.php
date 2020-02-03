@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
-include_once "../php/db_connect.php";
+include_once "../../php/db_connect.php";
 $con = new DBC();
 
 $date = date("Y/m/d H:i:s");
