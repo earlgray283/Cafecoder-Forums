@@ -30,7 +30,7 @@ if ($question_id == "" || $detail == "") {
 $url = $_SERVER['HTTP_REFERER'];
 
 $detail = nl2br($detail);
-$res = $con->simple_exec_obj("SELECT * FROM questions WHERE id='$question_id'");
+$res = $con->prepare_execute("SELECT * FROM questions WHERE id=?",array($question_id));
 if (!$res) {
     echo 'query failed';
     exit();
