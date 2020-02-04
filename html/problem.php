@@ -1,6 +1,9 @@
 <?php
-$problem_id=$_GET["problem_id"];
-$title=$_GET["title"];
+$problem_id=htmlspecialchars($_GET["problem_id"]);
+if (!preg_match("/^[a-zA-Z0-9_]+$/", $problem_id)) {
+    echo "<script>alert(validation chack error);</script>";
+    return false;
+}
 ?>
 <head>
 	<title>Cafecoder Forums</title>
@@ -19,12 +22,13 @@ $title=$_GET["title"];
             <div class="card-body">
                 <object type="text/html" data="Problems/1.html" style="width:1050px;height:1000px;"></object>
                 <hr>
-                <form action="judge_submit.php" method="post">
+                <form action="submits/judge.php" method="post">
                     <div class="form-group" style="width:auto">
                         <h4>問題ID</h4>
-                        <input type="text" class="form-control" style="width:20rem; "<?php echo 'value="'.$title.'">';?>
+                        <input type="text" name="problem_id" class="form-control" style="width:20rem; "<?php echo 'value="'.$problem_id.' "readonly';?>>
+                        <br>
                         <h4>言語</h4>
-                        <select class="form-control" name="forum_id" style="width:15rem;">
+                        <select class="form-control" name="language" style="width:15rem;">
                             <option value="c">C</option>
                             <option value="cpp">C++</option>
                             <option value="java">Java</option>
@@ -32,7 +36,7 @@ $title=$_GET["title"];
                         </select>
                         <br>
                         <h4>ソースコード</h4>
-                        <textarea class="form-control" name="detail" style="font-size:15px;width:50rem;" rows="25"></textarea>
+                        <textarea class="form-control" name="user_code" style="font-size:15px;width:50rem;" rows="25"></textarea>
                         <br>
                         <?php echo '<button type="submit" class="btn btn-success">submit</button>'; ?>
                     </div>

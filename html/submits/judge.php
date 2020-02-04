@@ -7,35 +7,33 @@ $con = new DBC();
 
 $date = date("Y/m/d H:i:s");
 
-if (!isset($_POST["language"]) || /*!isset($_POST["problem_id"]) ||*/ !isset($_POST["title"]) || !isset($_POST["detail"])) {
+if (!isset($_POST["language"]) || !isset($_POST["problem_id"]) || !isset($_POST["user_code"])) {
     echo "不適切なリクエストです。";
     echo $_POST["forum_id"];
     exit();
 }
-echo 'u';
 
-$forum_id = htmlspecialchars($_POST["forum_id"]);
-//$problem_id = htmlspecialchars($_POST["problem_id"]);
-$title = htmlspecialchars($_POST["title"]);
-$detail = htmlspecialchars($_POST["detail"]);
-if ($forum_id == "" || /*$problem_id == "" ||*/ $title == "" || $detail == "") {
+$language = htmlspecialchars($_POST["language"]);
+$problem_id = htmlspecialchars($_POST["problem_id"]);
+$user_code = htmlspecialchars($_POST["user_code"]);
+if ($language == "" || $problem_id == "" || $user_code == "") {
     echo "不適切なリクエストです。";
     exit();
 }
-/*
-todo バリデーションチェック
 
-*/
-$url = $_SERVER['HTTP_REFERER'];
+echo $language;
+echo $problem_id;
+echo $user_code;
 
-$detail = nl2br($detail);
 $userid = $_SESSION["userid"];
+$session_id=substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, 16);
 
-$res = $con->simple_exec_obj("INSERT INTO  questions (date,title,detail,author,forum_id,status) VALUES ( '$date' ,'$title' ,'$detail' ,'$userid',$forum_id,'WJ')");
+$res = $con->simple_exec_obj("INSERT INTO  judge_list (date,session_id,user_id,code,problem_id,status) VALUES ( '$date' ,'$session_id' ,'$userid' ,'$user_code','$problem_id','WJ')");
 if (!$res) {
     echo 'failed...';
     echo $date, $title, $detail, $_SESSION["userid"], $forum_id, 'WJ';
     exit();
 }
+system("../judge-server/judge");
 
 header('Location: /forums.php?forum_id=' . $forum_id);

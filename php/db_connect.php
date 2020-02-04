@@ -45,6 +45,13 @@ class DBC
     {
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute($data);
+        try{
+            $rec = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(Exception $e){
+            return true;
+        }
+        return $rec;
     }
 
     function sha256hash($in)

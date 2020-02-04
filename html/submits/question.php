@@ -35,7 +35,7 @@ $url = $_SERVER['HTTP_REFERER'];
 $detail = nl2br($detail);
 $userid = $_SESSION["userid"];
 
-$res = $con->simple_exec_obj("INSERT INTO  questions (date,title,detail,author,forum_id,status) VALUES ( '$date' ,'$title' ,'$detail' ,'$userid',$forum_id,'WJ')");
+$res = $con->prepare_execute("INSERT INTO  questions (date,title,detail,author,forum_id,status) VALUES ( ? ,? ,? ,?,?,'WJ')",array($date,$title,$detail,$userid,$forum_id));
 if (!$res) {
     echo 'failed...';
     echo $date, $title, $detail, $_SESSION["userid"], $forum_id, 'WJ';

@@ -10,6 +10,10 @@ if (isset($_GET["forum_id"]) == false) {
     echo 'Please set forum_id', "\n";
     exit();
 }
+if (!preg_match("/^[a-zA-Z0-9_]+$/", $_GET["forum_id"])) {
+    echo "Varidatioin Check Error";
+    return false;
+}
 $forum_id = htmlspecialchars($_GET["forum_id"]);
 ?>
 
@@ -21,7 +25,7 @@ $forum_id = htmlspecialchars($_GET["forum_id"]);
     }
     include_once "../template/header.php";
 
-    echo "<title>" . $forum_name . "</title>";
+    echo "<title>" . $forum_name . "- Cafecoder Forums</title>";
     ?>
 </head>
 
@@ -35,7 +39,7 @@ $forum_id = htmlspecialchars($_GET["forum_id"]);
     ?>
 
     <div class="container">
-        <h2><?php echo $forum_name; ?></h2>
+        <h2><?php echo $forum_name.'の質問一覧'; ?></h2>
         <hr>
         <div class="card">
             <div class="card-body">

@@ -3,12 +3,16 @@
 <?php
 include_once "../php/db_connect.php";
 require "../php/echo.php";
-$mes=$_GET["mes"];
+if (isset($_GET["mes"])&&!preg_match("/^[a-zA-Z0-9_]+$/", $_GET["mes"])) {
+    echo "Varidatioin Check Error";
+    return false;
+}
+$mes=htmlspecialchars($_GET["mes"]);
 $con = new DBC();
 ?>
 
 <head>
-	<title>Sign in</title>
+	<title>Sign in - Cafecoder Forums</title>
 	<?php
 	include_once "../template/header.php";
 	?>

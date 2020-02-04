@@ -18,16 +18,34 @@ if (!preg_match("/^[a-zA-Z0-9_]+$/", $userid)) {
     echo "現在ユーザー名に使用出来る文字列はa-zA-Z0-9です。";
     return false;
 }
-
+if(strlen($userid)>18){
+    echo "ユーザ名が長すぎます。ユーザ名は4文字以上18文字以下にしてください。";
+    return false;
+}
+if(strlen($userid)<4){
+    echo "ユーザ名が短すぎます。ユーザ名は4文字以上18文字以下にしてください。";
+    return false;
+}
+if (!preg_match("/^[a-zA-Z0-9_]+$/", $passwd1)) {
+    echo "パスワードに使用可能な文字はa-zA-Z0-9です。";
+    return false;
+}
+if(strlen($passwd1)<4){
+    echo "パスワードが短すぎます。4文字以上30文字以下にしてください。";
+    return false;
+}
+if(strlen($passwd1)>30){
+    echo "パスワードが長すぎます。4文字以上30文字以下にしてください。";
+    return false;
+}
 if (!preg_match("/^[a-zA-Z0-9_]+$/", $passwd1)) {
     echo "パスワードに使用可能な文字はa-zA-Z0-9です。";
     return false;
 }
 
 $res = $con->simple_exec_obj("SELECT * FROM users");
-foreach ((array)$res as $value) {
-	echo $value["userid"];	
-if ($value["userid"] == $userid) {
+foreach ($res as $value) {
+    if ($value["userid"] == $userid) {
         echo "すでに登録されているuseridです。";
         return false;
     }
@@ -39,9 +57,11 @@ if ($passwd1 != $passwd2) {
 }
 
 $hash = password_hash($passwd1, PASSWORD_DEFAULT);
-$res = $con->simple_exec_obj("INSERT INTO users(date,userid,passwd_hash) VALUES ('$date','$userid','$hash')");
+
+$res = $con->prepare_execute("INSERT INTO users(date,userid,passwd_hash) VALUES (?,?,?)",array($date,$userid,$hash));
 if (!$res) {
-    echo "INSERT INTO users(date,userid,passwd_hash) VALUES ('$date','$userid','$hash')";
+    //echo "INSERT INTO users(date,userid,passwd_hash) VALUES ('$date','$userid','$hash')";
+    echo "prepare_execute_error";
     return false;
 }
 header('Location: /signin.php?mes=2');

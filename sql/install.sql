@@ -9,6 +9,16 @@ CREATE TABLE answers (
   forum_id int NOT NULL,
   PRIMARY KEY (id)
 );
+CREATE TABLE judge_list (
+  date datetime NOT NULL,
+  session_id varchar(256) NOT NULL,
+  user_id varchar(128) NOT NULL,
+  code nvarchar(5000) NOT NULL,
+  problem_id varchar(128) NOT NULL,
+  status varchar(64) NOT NULL,
+  testcase_result varchar(512) NOT NULL,
+  PRIMARY KEY (session_id)
+);
 CREATE TABLE forums (
   date datetime NOT NULL,
   id int NOT NULL AUTO_INCREMENT,

@@ -4,11 +4,15 @@
 include_once "../php/db_connect.php";
 require "../php/echo.php";
 $con = new DBC();
-$forum_id=$_GET["forum_id"];
+if (!preg_match("/^[a-zA-Z0-9_]+$/", $_GET["forum_id"])) {
+    echo "Varidatioin Check Error";
+    return false;
+}
+$forum_id=htmlspecialchars($_GET["forum_id"]);
 ?>
 
 <head>
-    <title>Cafecoder Forums</title>
+    <title>Ask a question - Cafecoder Forums</title>
     <?php
     include_once "../template/header.php";
     ?>
